@@ -16,7 +16,7 @@ import (
 )
 
 func main() {
-  fmt.Println(jstypes.String("HI").toLowerCase()) // "hi"
+  fmt.Println(jstypes.String("HI").ToLowerCase()) // "hi"
   fmt.Println(jstypes.String("HI").Includes("h")) // true
   fmt.Println(jstypes.Array[string]([]string{"hi"}).Includes("hi")) // true
 }
