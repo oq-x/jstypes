@@ -15,6 +15,10 @@ import (
   "github.com/oq-x/jstypes"
 )
 
+func point[T any](t T) *T {
+  return &t
+}
+
 func main() {
   fmt.Println(jstypes.String("HI").ToLowerCase()) // "hi"
   fmt.Println(jstypes.String("HI").Includes("h")) // true
