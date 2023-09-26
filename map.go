@@ -61,6 +61,10 @@ func (m *Map[K, V]) Values() (arr Array[V]) {
 	return
 }
 
+func (m *Map[K, V]) Size() int {
+	return len(m.m)
+}
+
 func (m *Map[K, V]) Entries() (arr Array[Array[interface{}]]) {
 	for k, v := range m.m {
 		arr.Push(Array[interface{}]{
