@@ -105,3 +105,7 @@ func (str *String) Split(splitter String) (s []String) {
 	}
 	return
 }
+
+func (str *String) String() string {
+	return string(*str)
+}

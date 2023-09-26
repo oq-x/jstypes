@@ -84,7 +84,7 @@ func (a *Array[T]) Find(f ArrayFilterFunc[T]) *T {
 func (a *Array[T]) FindLast(f ArrayFilterFunc[T]) *T {
 	b := make(Array[T], len(*a))
 	copy(b, *a)
-	slices.Reverse(b)
+	b.Reverse()
 	for in, it := range b {
 		if f(it, in, a) {
 			return &it
@@ -164,11 +164,20 @@ func (a *Array[T]) ToString() string {
 func (a *Array[T]) Unshift(items ...T) {
 	b := make(Array[T], len(*a))
 	copy(b, *a)
-	slices.Reverse(b)
+	b.Reverse()
 	slices.Reverse(items)
 	b = append(b, items...)
-	slices.Reverse(b)
+	b.Reverse()
 	*a = b
+}
+
+func (a *Array[T]) Includes(element T) bool {
+	for _, e := range *a {
+		if reflect.DeepEqual(element, e) {
+			return true
+		}
+	}
+	return false
 }
 
 func (a *Array[T]) With(index int, element T) Array[T] {
@@ -179,4 +188,8 @@ func (a *Array[T]) With(index int, element T) Array[T] {
 	}
 	b[index] = element
 	return b
+}
+
+func (a *Array[T]) ToSlice() []T {
+	return []T(*a)
 }
