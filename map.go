@@ -69,3 +69,7 @@ func (m *Map[K, V]) Entries() (arr Array[Array[interface{}]]) {
 	}
 	return
 }
+
+func (m *Map[K, V]) ToMap() map[K]V {
+	return m.m
+}

@@ -1,14 +1,14 @@
 package jstypes
 
 import (
-	"slices"
 	"strings"
 )
 
 type String string
 
 func (str *String) At(index int) String {
-	return String(strings.Split(string(*str), "")[index])
+	arr := Array[string](strings.Split(string(*str), ""))
+	return String(*arr.At(index))
 }
 
 func (str *String) Concat(strings ...String) String {
@@ -32,8 +32,8 @@ func (str *String) Replace(old String, new String) String {
 }
 
 func (str *String) Reverse() String {
-	sp := strings.Split(string(*str), "")
-	slices.Reverse(sp)
+	sp := Array[string](strings.Split(string(*str), ""))
+	sp.Reverse()
 	return String(strings.Join(sp, ""))
 }
 
@@ -42,7 +42,8 @@ func (str *String) ToLowerCase() String {
 }
 
 func (str *String) Length() int {
-	return len(strings.Split(string(*str), ""))
+	arr := Array[string](strings.Split(string(*str), ""))
+	return arr.Length()
 }
 
 func (str *String) ToUpperCase() String {
@@ -98,10 +99,10 @@ func (str *String) Repeat(times int) (st String) {
 	return
 }
 
-func (str *String) Split(splitter String) (s []String) {
+func (str *String) Split(splitter String) (s Array[String]) {
 	sp := strings.Split(string(*str), string(splitter))
 	for _, i := range sp {
-		s = append(s, String(i))
+		s.Push(String(i))
 	}
 	return
 }
