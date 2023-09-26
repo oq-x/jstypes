@@ -21,7 +21,7 @@ func (a *Array[T]) At(index int) *T {
 	if index < 0 {
 		b := make(Array[T], len(*a))
 		copy(b, *a)
-		slices.Reverse(b)
+		b.Reverse()
 		index = int(math.Abs(float64(index))) - 1
 		if len(b) <= index {
 			return nil
