@@ -11,6 +11,10 @@ type Set[T any] struct {
 	entries []T
 }
 
+func (set *Set[T]) Size() int {
+	return len(set.entries)
+}
+
 func (set *Set[T]) Add(item T) *Set[T] {
 	for _, i := range set.entries {
 		if reflect.DeepEqual(item, i) {
