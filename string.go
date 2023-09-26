@@ -7,7 +7,7 @@ import (
 type String string
 
 func (str *String) At(index int) String {
-	arr := Array[string](strings.Split(string(*str), ""))
+	arr := Array[string](strings.Split(str.String(), ""))
 	return String(*arr.At(index))
 }
 
@@ -20,38 +20,38 @@ func (str *String) Concat(strings ...String) String {
 }
 
 func (str *String) Includes(s String) bool {
-	return strings.Contains(string(*str), string(s))
+	return strings.Contains(str.String(), s.String())
 }
 
 func (str *String) ReplaceAll(old String, new String) String {
-	return String(strings.ReplaceAll(string(*str), string(old), string(new)))
+	return String(strings.ReplaceAll(str.String(), old.String(), new.String()))
 }
 
 func (str *String) Replace(old String, new String) String {
-	return String(strings.Replace(string(*str), string(old), string(new), 1))
+	return String(strings.Replace(str.String(), old.String(), new.String(), 1))
 }
 
 func (str *String) Reverse() String {
-	sp := Array[string](strings.Split(string(*str), ""))
+	sp := Array[string](strings.Split(str.String(), ""))
 	sp.Reverse()
 	return String(strings.Join(sp, ""))
 }
 
 func (str *String) ToLowerCase() String {
-	return String(strings.ToLower(string(*str)))
+	return String(strings.ToLower(str.String()))
 }
 
 func (str *String) Length() int {
-	arr := Array[string](strings.Split(string(*str), ""))
+	arr := Array[string](strings.Split(str.String(), ""))
 	return arr.Length()
 }
 
 func (str *String) ToUpperCase() String {
-	return String(strings.ToUpper(string(*str)))
+	return String(strings.ToUpper(str.String()))
 }
 
 func (str *String) Trim() String {
-	return String(strings.TrimSpace(string(*str)))
+	return String(strings.TrimSpace(str.String()))
 }
 
 func (str *String) Substring(start int, e ...int) String {
@@ -59,16 +59,16 @@ func (str *String) Substring(start int, e ...int) String {
 	if len(e) == 1 {
 		end = int(e[0])
 	}
-	sp := strings.Split(string(*str), "")
-	return String(string(strings.Join(sp[start:end], "")))
+	sp := strings.Split(str.String(), "")
+	return String(strings.Join(sp[start:end], ""))
 }
 
 func (str *String) StartsWith(s String) bool {
-	return strings.HasPrefix(string(*str), string(s))
+	return strings.HasPrefix(str.String(), s.String())
 }
 
 func (str *String) EndsWith(s String) bool {
-	return strings.HasSuffix(string(*str), string(s))
+	return strings.HasSuffix(str.String(), s.String())
 }
 
 func (str *String) PadEnd(length int, pad String) String {
@@ -100,7 +100,7 @@ func (str *String) Repeat(times int) (st String) {
 }
 
 func (str *String) Split(splitter String) (s Array[String]) {
-	sp := strings.Split(string(*str), string(splitter))
+	sp := strings.Split(str.String(), splitter.String())
 	for _, i := range sp {
 		s.Push(String(i))
 	}
