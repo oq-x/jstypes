@@ -13,6 +13,23 @@ type ArrayMapFunc[T any] func(element T, index int, array *Array[T]) T
 
 type Array[T any] []T
 
+func ArrayFrom(f any) *Array[any] {
+	arr := make(Array[any], 0)
+	switch t := f.(type) {
+	case int:
+		for i := 0; i < t; i++ {
+			arr = append(arr, i)
+		}
+	}
+	return &arr
+}
+
+func ArrayTo[T any](arr Array[interface{}], new Array[T]) {
+	for _, e := range arr {
+		new = append(new, e.(T))
+	}
+}
+
 func (a *Array[T]) Push(items ...T) {
 	*a = append(*a, items...)
 }

@@ -6,8 +6,8 @@ type Map[K comparable, V any] struct {
 	m map[K]V
 }
 
-func MapFrom[K comparable, V any](m map[K]V) Map[K, V] {
-	return Map[K, V]{m: m}
+func MapFrom[K comparable, V any](m map[K]V) *Map[K, V] {
+	return &Map[K, V]{m: m}
 }
 
 func (m *Map[K, V]) Get(key K) *V {

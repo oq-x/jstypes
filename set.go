@@ -11,6 +11,23 @@ type Set[T any] struct {
 	entries []T
 }
 
+func SetFrom[T any](arr []T) *Set[T] {
+	set := &Set[T]{}
+	for _, e := range arr {
+		ex := false
+		for _, e1 := range set.entries {
+			if reflect.DeepEqual(e, e1) {
+				ex = true
+				break
+			}
+		}
+		if !ex {
+			set.entries = append(set.entries, e)
+		}
+	}
+	return set
+}
+
 func (set *Set[T]) Size() int {
 	return len(set.entries)
 }

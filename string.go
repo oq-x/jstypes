@@ -6,6 +6,11 @@ import (
 
 type String string
 
+func StringFrom(str string) *String {
+	s := String(str)
+	return &s
+}
+
 func (str *String) At(index int) String {
 	arr := Array[string](strings.Split(str.String(), ""))
 	return String(*arr.At(index))
