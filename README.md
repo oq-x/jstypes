@@ -1,12 +1,15 @@
 # JSTypes
+
 JavaScript types (string, array, set, map) in Go
 
 ## Example
+
 ```js
-  console.log("HI".toLowerCase()) // "hi"
-  console.log("HI".includes("H")) // true
-  console.log(["hi"].includes("hi")) // true
+console.log("HI".toLowerCase()); // "hi"
+console.log("HI".includes("H")); // true
+console.log(["hi"].includes("hi")); // true
 ```
+
 ```go
 package main
 import (
