@@ -13,7 +13,7 @@ type ArrayMapFunc[T any] func(element T, index int, array *Array[T]) T
 
 type Array[T any] []T
 
-func ArrayFrom(f any) *Array[any] {
+func ArrayFromAny(f any) *Array[any] {
 	arr := make(Array[any], 0)
 	switch t := f.(type) {
 	case int:
@@ -21,6 +21,11 @@ func ArrayFrom(f any) *Array[any] {
 			arr = append(arr, i)
 		}
 	}
+	return &arr
+}
+
+func ArrayFrom[T any](s []T) *Array[T] {
+	arr := Array[T](s)
 	return &arr
 }
 
